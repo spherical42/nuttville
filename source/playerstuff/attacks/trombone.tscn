@@ -4,6 +4,7 @@
 [ext_resource path="res://source/playerstuff/attacks/trombone.gd" type="Script" id=2]
 
 [node name="Node2D" type="Area2D"]
+scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
