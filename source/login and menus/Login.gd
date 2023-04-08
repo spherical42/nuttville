@@ -8,7 +8,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if get_node("/root/Savelogin").savedlogin != "*":
+		$EmailText.text = get_node("/root/Savelogin").savedlogin
+		_on_Login_button_down()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,7 +34,6 @@ func _on_Register_button_down() -> void:
 	if session.is_exception() == false:
 		Online.nakama_session = session
 		self.hide()
-	pass # Replace with function body.
 
 
 func _on_Login_button_down() -> void:
@@ -51,8 +52,9 @@ func _on_Login_button_down() -> void:
 	if session.is_exception() == false:
 		Online.nakama_session = session
 		get_parent().get_parent().get_node("Players/Camera2D/ui/Username").text = Online.nakama_session.username 
+		get_node("/root/Savelogin").savedlogin = email
 		self.hide()
-	pass # Replace with function body.
+		get_parent().get_node("start").hide()
 
 
 
@@ -61,5 +63,4 @@ func _on_Login_button_down() -> void:
 func _on_Back_button_down() -> void:
 	get_parent().get_node("start").show()
 	get_parent().get_parent().get_node("sound/uisound/back").play()
-	pass # Replace with function body.
 

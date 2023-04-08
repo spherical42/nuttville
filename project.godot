@@ -107,6 +107,7 @@ config/icon="res://icon.png"
 Online="*res://addons/NakamaOnline/Online.gd"
 OnlineMatch="*res://addons/NakamaOnline/OnlineMatch.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
+Savelogin="*res://source/login and menus/savelogin.tscn"
 
 [debug]
 
