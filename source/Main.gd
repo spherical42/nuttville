@@ -76,3 +76,6 @@ func end_game(winners : String):
 	get_tree().reload_current_scene()
 	pass
 	
+
+
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://source/login and menus/ReadyScreen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/login and menus/FindMatch.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/ohter things/buttonfonttheme.tres" type="Theme" id=14]
 [ext_resource path="res://assets/sounds/effects/ui/connected.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/sounds/music/p5jazz.ogg" type="AudioStream" id=16]
+[ext_resource path="res://source/exit_menu.gd" type="Script" id=17]
 [ext_resource path="res://assets/sounds/music/blooddrain.ogg" type="AudioStream" id=18]
 
 [sub_resource type="Theme" id=1]
@@ -79,14 +80,13 @@ margin_bottom = 512.0
 theme = ExtResource( 14 )
 
 [node name="ReadyScreen" parent="Control" instance=ExtResource( 1 )]
+mouse_filter = 2
 
 [node name="MatchFound" type="Control" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel2" type="Panel" parent="Control/MatchFound"]
 anchor_right = 1.0
@@ -108,6 +108,7 @@ align = 1
 [node name="FindMatch" type="Control" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -129,10 +130,7 @@ margin_left = -53.0356
 margin_top = -13.6071
 margin_right = 47.9644
 margin_bottom = 0.392883
-text = "Finding Match."
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Finding Match"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/FindMatch/Label"]
 anims/loading = SubResource( 2 )
@@ -169,11 +167,9 @@ __meta__ = {
 [node name="Login" type="Control" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme = ExtResource( 14 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="Control/Login"]
 anchor_right = 1.0
@@ -240,27 +236,27 @@ __meta__ = {
 }
 
 [node name="Register" type="Button" parent="Control/Login"]
-margin_left = 72.0
+margin_left = 220.0
 margin_top = 256.0
-margin_right = 192.0
-margin_bottom = 299.0
+margin_right = 420.0
+margin_bottom = 306.0
 text = "Register"
 
 [node name="Login" type="Button" parent="Control/Login"]
-margin_left = 72.0
+margin_left = 220.0
 margin_top = 256.0
-margin_right = 195.0
-margin_bottom = 299.0
+margin_right = 420.0
+margin_bottom = 306.0
 text = "Login"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Back" type="Button" parent="Control/Login"]
-margin_left = 256.0
+margin_left = 277.5
 margin_top = 344.0
-margin_right = 341.0
-margin_bottom = 370.0
+margin_right = 362.5
+margin_bottom = 376.0
 text = "Back"
 
 [node name="ErrorText" type="Label" parent="Control/Login"]
@@ -274,35 +270,84 @@ text = "error here"
 [node name="start" type="Control" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 6 )
 
 [node name="Panel" type="Panel" parent="Control/start"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.943909
-margin_right = 0.943909
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Register" type="Button" parent="Control/start"]
-margin_left = 152.0
-margin_top = 192.0
-margin_right = 275.0
-margin_bottom = 235.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -91.0
+margin_right = 100.0
+margin_bottom = -41.0
 theme = ExtResource( 14 )
 text = "Register"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="-or-" type="Label" parent="Control/start"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -13.0
+margin_right = 20.0
+margin_bottom = 13.0
+text = "-OR-"
 
 [node name="Login" type="Button" parent="Control/start"]
-margin_left = 256.0
-margin_top = 200.0
-margin_right = 384.0
-margin_bottom = 243.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = 43.0
+margin_right = 100.0
+margin_bottom = 93.0
 theme = ExtResource( 14 )
 text = "Login"
+
+[node name="exit_menu" type="Control" parent="Control"]
+margin_left = -185.0
+margin_top = -55.0
+margin_right = -185.0
+margin_bottom = -55.0
+script = ExtResource( 17 )
+
+[node name="grey_out" type="ColorRect" parent="Control/exit_menu"]
+margin_left = -266.0
+margin_top = -153.0
+margin_right = 219.0
+margin_bottom = 488.0
+rect_scale = Vector2( 3.19236, 1.35492 )
+color = Color( 0.388235, 0.388235, 0.388235, 0.827451 )
+
+[node name="mExit" type="Label" parent="Control/exit_menu"]
+margin_left = 320.0
+margin_right = 700.0
+margin_bottom = 26.0
+text = "Would you like to exit to the desktop?"
+
+[node name="Yes" type="Button" parent="Control/exit_menu"]
+margin_left = 267.0
+margin_top = 95.0
+margin_right = 467.0
+margin_bottom = 145.0
+theme = ExtResource( 14 )
+text = "Yes"
+
+[node name="No" type="Button" parent="Control/exit_menu"]
+margin_left = 552.0
+margin_top = 95.0
+margin_right = 752.0
+margin_bottom = 145.0
+theme = ExtResource( 14 )
+text = "No"
 
 [node name="Players" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -326,6 +371,10 @@ position = Vector2( 511.979, 287.704 )
 current = true
 
 [node name="ui" type="ReferenceRect" parent="Players/Camera2D"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 margin_left = -768.0
 margin_top = -432.0
 margin_right = 768.0
@@ -397,5 +446,7 @@ stream = ExtResource( 15 )
 [connection signal="button_down" from="Control/Login/Back" to="Control/Login" method="_on_Back_button_down"]
 [connection signal="button_down" from="Control/start/Register" to="Control/start" method="_on_Register_button_down"]
 [connection signal="button_down" from="Control/start/Login" to="Control/start" method="_on_Login_button_down"]
+[connection signal="button_up" from="Control/exit_menu/Yes" to="Control/exit_menu" method="_on_Yes_button_up"]
+[connection signal="button_up" from="Control/exit_menu/No" to="Control/exit_menu" method="_on_No_button_up"]
 
 [editable path="Control/ReadyScreen"]
