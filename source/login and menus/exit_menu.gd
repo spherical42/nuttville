@@ -25,6 +25,7 @@ func _input(event):
 	pass
 
 func _ready():
+	self.visible = true
 	get_node("Yes").hide()
 	get_node("No").hide()
 	get_node("grey_out").hide()
