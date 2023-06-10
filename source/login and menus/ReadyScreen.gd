@@ -10,6 +10,7 @@ signal PlayerReady()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	self.show()
 	OnlineMatch.connect("player_joined", self, "PlayerJoined")
 	OnlineMatch.connect("player_left", self, "PlayerLeft")
 	OnlineMatch.connect("player_status_changed", self, "PlayerStatusChanged")

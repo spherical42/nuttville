@@ -242,7 +242,7 @@ func custom_rpc(node: Node, method: String, args: Array = []) -> void:
 	custom_rpc_id(node, 0, method, args)
 
 func custom_rpc_id(node: Node, id: int, method: String, args: Array = []) -> void:
-	assert(match_state == MatchState.READY or match_state == MatchState.PLAYING)
+	assert(match_state == MatchState.READY or match_state == MatchState.PLAYING, "Match state is %f" % match_state)
 	assert(match_id != '')
 	assert(nakama_socket != null)
 	

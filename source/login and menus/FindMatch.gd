@@ -8,6 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	self.show()
 	OnlineMatch.connect("matchmaker_matched",self,"OnMatchFound")
 	pass # Replace with function body.
 
@@ -19,6 +20,12 @@ func OnMatchFound(players):
 	get_parent().get_parent().get_node("sound/uisound/connected").play()
 	get_parent().get_node("MatchFound").MatchFound()
 	self.hide()
+	pass
+
+func _input(event):
+	if event.is_action_released("ui_accept") and get_parent().get_node("Login").visible == false:
+		_on_Button_button_down()
+		pass
 	pass
 
 

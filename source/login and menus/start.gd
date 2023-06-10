@@ -9,6 +9,7 @@ var bLogin
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	self.show()
 	bRegister = get_node("Register")
 	bLogin = get_node("Login")
 	pass # Replace with function body.

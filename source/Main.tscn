@@ -80,9 +80,11 @@ margin_bottom = 512.0
 theme = ExtResource( 14 )
 
 [node name="ReadyScreen" parent="Control" instance=ExtResource( 1 )]
+visible = false
 mouse_filter = 2
 
 [node name="MatchFound" type="Control" parent="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -106,6 +108,7 @@ text = "Match Found!"
 align = 1
 
 [node name="FindMatch" type="Control" parent="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -265,6 +268,7 @@ margin_bottom = 236.0
 text = "error here"
 
 [node name="start" type="Control" parent="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -310,6 +314,7 @@ theme = ExtResource( 14 )
 text = "Login"
 
 [node name="exit_menu" type="Control" parent="Control"]
+visible = false
 margin_left = -185.0
 margin_top = -55.0
 margin_right = -185.0

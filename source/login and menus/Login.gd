@@ -8,6 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	self.show()
 	if get_node("/root/Savelogin").savedlogin != "*":
 		$EmailText.text = get_node("/root/Savelogin").savedlogin
 		_on_Login_button_down()
@@ -56,11 +57,13 @@ func _on_Login_button_down() -> void:
 		self.hide()
 		get_parent().get_node("start").hide()
 
-
+func _input(event):
+	if event.is_action_released("ui_accept") and get_parent().get_node("start").visible == false:
+		_on_Login_button_down()
+		pass
 
 
 
 func _on_Back_button_down() -> void:
 	get_parent().get_node("start").show()
 	get_parent().get_parent().get_node("sound/uisound/back").play()
-
