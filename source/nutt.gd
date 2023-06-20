@@ -19,8 +19,11 @@ func _physics_process(delta: float) -> void:
 	
 	for p in players:
 		var dist = global_position.distance_to(p.global_position)
-		print(p.team)
+		
 		if dist > 1200:
+			dist = 1200
+		
+		if p.dead == true:
 			dist = 1200
 		
 		dist = 1200 - dist
@@ -28,9 +31,6 @@ func _physics_process(delta: float) -> void:
 		if p.team == "red":
 			dist *= -1
 			
-		
-		
-		
 		dir += dist/45
 	
 	pos += dir*delta
