@@ -7,43 +7,38 @@ extends Node2D
 
 var team = null
 var pos = 0
+var spd
 signal gameover()
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-func _get_custom_rpc_methods():
-	return [
-		"damage"
-	]
 
 func _physics_process(delta: float) -> void:
-	position.x = lerp(position.x - 3712, pos, 0.5) + 3712
-	pass
-
-func damage(amount, whohit):
 	
 	
-	match whohit:
-		"1":
+	var players = get_parent().get_parent().get_node("Players").get_node("PlayersSpawnUnder").get_children()
+	var dir = 0
+	
+	for p in players:
+		var dist = global_position.distance_to(p.global_position)
+		print(p.team)
+		if dist > 1200:
+			dist = 1200
+		
+		dist = 1200 - dist
+		
+		if p.team == "red":
+			dist *= -1
 			
-			pos += amount/5
-		"2":
-			
-			
-			pos -= amount/5
-			
-		"3":
-			
-			
-			pos += amount/5
-		"4":
-			
-			pos -= amount/5
-	print(position.x)
+		
+		
+		
+		dir += dist/45
+	
+	pos += dir*delta
+	
 	if pos <= -1344:
 		emit_signal("gameover", "red")
 	if pos >= 1344:
 		emit_signal("gameover", "blue")
+	position.x = lerp(position.x - 3712, pos, 0.5) + 3712
 	get_node("Label").text = str(position.x - 3712)
+

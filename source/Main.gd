@@ -7,8 +7,6 @@ extends Node2D
 var readyPlayers = {}
 var usernames = {}
 var uid = {}
-var playersunder = preload("res://source/playerstuff/playersunder.tscn")
-var readyscreen = preload("res://source/login and menus/ReadyScreen.tscn")
 var nutt = "main"
 
 func _get_custom_rpc_methods():
