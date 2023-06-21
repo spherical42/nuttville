@@ -105,6 +105,7 @@ func _get_custom_rpc_methods():
 
 
 func _physics_process(_delta: float) -> void:
+	
 	get_node("Nametag").text = username
 	
 	$hpbar/bar.rect_size = Vector2(64.0*(float(hp)/float(maxhp)), 8)
@@ -143,6 +144,12 @@ func _physics_process(_delta: float) -> void:
 	z_index = global_position.y
 	
 	if playerControlled && dead == false:
+		if OnlineMatch.match_state == OnlineMatch.MatchState.READY or OnlineMatch.match_state == OnlineMatch.MatchState.PLAYING:
+			pass
+		else:
+			return
+		
+		
 		vector = Vector2()
 		arrowkeys = Vector2()
 		
@@ -381,6 +388,13 @@ func UpdateNonPos(ipress, opress, ppress, playerwhoshot):
 
 func slowrpc():
 	if playerControlled:
+		
+		if OnlineMatch.match_state == OnlineMatch.MatchState.READY or OnlineMatch.match_state == OnlineMatch.MatchState.PLAYING:
+			pass
+		else:
+			return
+		
+		
 		OnlineMatch.custom_rpc(self, "UpdateNonPos", [press_i, press_o, press_p, name])
 		
 		## this part is so that the shooting is synced up

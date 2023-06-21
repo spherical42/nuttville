@@ -10,6 +10,7 @@ var errmsg
 func _ready() -> void:
 	yield(get_tree().create_timer(0.1), "timeout")
 	$Label.text = str(errmsg)
+	yield(get_tree().create_timer(0.5), "timeout")
 	OnlineMatch.leave()
 	pass # Replace with function body.
 

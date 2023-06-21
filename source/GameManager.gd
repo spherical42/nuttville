@@ -72,6 +72,11 @@ func PlayerLeft(player):
 	pass
 
 func hostleftcheck(error):
+	if OnlineMatch.match_state == OnlineMatch.MatchState.READY or OnlineMatch.match_state == OnlineMatch.MatchState.PLAYING:
+		pass
+	else:
+		return
+		
 	if error == "Host has disconnected":
 		var endpop = endscreen.instance()
 		get_node("Camera2D/ui").add_child(endpop)
