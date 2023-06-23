@@ -78,6 +78,8 @@ func _ready() -> void:
 	
 	slowrpc()
 	
+	yield(get_tree().create_timer(0.2), "timeout")
+	get_node("Nametag").text = username
 	pass # Replace with function body.
 
 func _get_custom_rpc_methods():
@@ -92,7 +94,6 @@ func _get_custom_rpc_methods():
 
 func _physics_process(_delta: float) -> void:
 	
-	get_node("Nametag").text = username
 	
 	$hpbar/bar.rect_size = Vector2(64.0*(float(hp)/float(maxhp)), 8)
 	

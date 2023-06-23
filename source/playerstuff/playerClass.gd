@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-class_name Player
+class_name Character
 
 var playerControlled = false
 var username = ""
@@ -32,5 +32,8 @@ func _ready():
 	
 	
 
+func _physics_process(_delta: float) -> void:
+	
+	pass
 
 
