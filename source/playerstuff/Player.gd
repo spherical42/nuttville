@@ -39,16 +39,10 @@ signal playerdied()
 func _ready() -> void:
 	yield(get_tree().create_timer(0.1), "timeout")
 	match name:
-		"1":
+		"1", "3":
 			get_node("red").hide()
 			team = "blue"
-		"2":
-			get_node("blue").hide()
-			team = "red"
-		"3":
-			get_node("red").hide()
-			team = "blue"
-		"4":
+		"2", "4":
 			get_node("blue").hide()
 			team = "red"
 	

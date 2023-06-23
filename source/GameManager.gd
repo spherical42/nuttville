@@ -37,6 +37,7 @@ func StartGame(players):
 	
 
 func setupGame(players):
+	## this section will need to be overhauled
 	Players = players
 	AlivePlayers = players
 	#id here is 1 2 3 or 4
