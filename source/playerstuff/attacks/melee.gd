@@ -8,7 +8,6 @@ extends Area2D
 var timeToLive = 0.5
 var damage = 100
 var playerWhoShot
-var nutt = "projectile"
 var team
 
 

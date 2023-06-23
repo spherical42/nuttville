@@ -9,7 +9,6 @@ var speed = 2000
 var playerWhoShot 
 var timeToLive = 0.5
 var damage = 100
-var nutt = "projectile"
 var team
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

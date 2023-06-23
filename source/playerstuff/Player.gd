@@ -20,23 +20,18 @@ var press_i = false
 var press_o = false
 var press_p = false
 var press_super = false
-var dash = 0
-var dashspd = 20
 var charid #comes from selection id 
 var maxhp = 1000 #maximum hp
 var hp = 1000
 var moveset #the id of the moveset
-var nutt = "damage"
 var oldpos
 var i_cd = 0
 var o_cd = 0
 var p_cd = 0
-var super_cd = 0
 var dynamic = 0
 var ultcost
 export var Bullet : PackedScene
 export var Melee : PackedScene
-var panspin = preload("res://source/playerstuff/attacks/panasonicspin.tscn")
 signal playerdied()
 
 
@@ -64,7 +59,6 @@ func _ready() -> void:
 				maxhp = 700
 				hp = maxhp
 				moveset = 1
-				dashspd = 25
 				playerspeed = 10
 				
 			
@@ -72,7 +66,6 @@ func _ready() -> void:
 				maxhp = 1100
 				hp = maxhp
 				moveset = 2
-				dashspd = 20
 				playerspeed = 7
 				
 				
@@ -81,14 +74,13 @@ func _ready() -> void:
 				maxhp = 800
 				hp = maxhp
 				moveset = 3
-				dashspd = 25
 				playerspeed = 8
 			
 			
 			_: 
 				pass
 		
-		OnlineMatch.custom_rpc(self, "syncOthers", [username, charid, moveset, maxhp, playerspeed, dashspd]) #UPDATE THIS WHENEVER YOU ADD A NEW PARAMETER
+		OnlineMatch.custom_rpc(self, "syncOthers", [username, charid, moveset, maxhp, playerspeed]) #UPDATE THIS WHENEVER YOU ADD A NEW PARAMETER
 	
 	slowrpc()
 	
@@ -187,21 +179,6 @@ func _physics_process(_delta: float) -> void:
 		get_node("lookin parent").look_at(get_global_mouse_position())
 		
 		
-		if dash > 0:
-			
-			
-			if Input.is_action_pressed("ui_down"):
-				vector.y += dashspd
-			if Input.is_action_pressed("ui_left"):
-				vector.x -= dashspd
-			if Input.is_action_pressed("ui_up"):
-				vector.y -= dashspd
-			if Input.is_action_pressed("ui_right"):
-				vector.x += dashspd
-			
-			
-			dash -= 1
-		
 		
 		
 		if abs(vector.x) == abs(vector.y):
@@ -222,12 +199,10 @@ func _physics_process(_delta: float) -> void:
 		i_cd -= 1
 		o_cd -= 1
 		p_cd -= 1
-		super_cd -= 1
 		
 		i_cd = clamp(i_cd, 0, 10000)
 		o_cd = clamp(o_cd, 0, 10000)
 		p_cd = clamp(p_cd, 0, 10000)
-		super_cd = clamp(super_cd, 0, 10000)
 		
 		## remeber to update cooldowns
 		
@@ -271,14 +246,10 @@ func _physics_process(_delta: float) -> void:
 						pass
 		
 		if Input.is_action_pressed("super"):
-			if super_cd == 0:
-				press_super = true
-				match moveset:
-					_:
-						pass
+			pass
 		
 		if Input.is_action_just_pressed("dash"):
-			dash = 4
+			pass
 		
 		if get_node("lookin parent").global_transform != oldpos:
 			OnlineMatch.custom_rpc(self, "UpdatePos", [global_transform, get_node("lookin parent").rotation, anim_dir])
@@ -410,7 +381,7 @@ func slowrpc():
 
 
 
-func syncOthers(gamertag, ch, mvst, mhp, psp, dsp):
+func syncOthers(gamertag, ch, mvst, mhp, psp):
 	#to run at the beginning of the game from everyone as their character
 	#to tell everyone all of the data of their character
 	username = gamertag
@@ -419,7 +390,6 @@ func syncOthers(gamertag, ch, mvst, mhp, psp, dsp):
 	maxhp = mhp
 	hp = maxhp
 	playerspeed = psp
-	dashspd = dsp
 	
 	pass
 

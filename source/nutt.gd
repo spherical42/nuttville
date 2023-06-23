@@ -5,9 +5,7 @@ extends Node2D
 # var a: int = 2
 # var b: String = "text"
 
-var team = null
 var pos = 0
-var spd
 var done = false
 signal gameover()
 
