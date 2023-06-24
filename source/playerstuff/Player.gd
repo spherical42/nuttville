@@ -78,7 +78,7 @@ func _ready() -> void:
 	
 	slowrpc()
 	
-	yield(get_tree().create_timer(0.2), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	get_node("Nametag").text = username
 	pass # Replace with function body.
 

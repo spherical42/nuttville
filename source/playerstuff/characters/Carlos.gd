@@ -16,3 +16,7 @@ func _physics_process(_delta: float) -> void:
 	._physics_proscess()
 	
 	pass
+
+func DoAttacks(p):
+	
+	pass
