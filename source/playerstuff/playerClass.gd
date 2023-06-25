@@ -4,17 +4,18 @@ class_name Character
 
 var playerControlled = false
 var username = ""
+var selectid #defined by child class
 var team
 var dead = false
 var vector : Vector2
 var arrowkeys : Vector2
 var anim_dir : Vector2
 var last_dir : Vector2
-var playerspeed
+var playerspeed = 7
 var pressed = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] 1 for pressed 0 for not
 var cooldowns = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] frames of cooldown left
-var maxhp
-var hp
+var maxhp = 1000
+var hp = 1000
 var oldpos
 signal playerdied()
 
@@ -30,7 +31,10 @@ func _ready():
 	
 	if playerControlled == true:
 		## something creating the character for everyone else
-		pass
+		OnlineMatch.custom_rpc_sync(get_parent(), "createPlayer", [name, username, selectid])
+		playerControlled = false
+	
+	hp = maxhp
 	
 	yield(get_tree().create_timer(0.2), "timeout")
 	get_node("Nametag").text = username
@@ -63,13 +67,13 @@ func _physics_process(_delta: float) -> void:
 		vector = Vector2()
 		arrowkeys = Vector2()
 		
-		if Input.is_action_pressed("downarrow"):
+		if Input.is_action_pressed("ui_down"):
 			arrowkeys.y += 1
-		if Input.is_action_pressed("leftarrow"):
+		if Input.is_action_pressed("ui_left"):
 			arrowkeys.x -= 1
-		if Input.is_action_pressed("uparrow"):
+		if Input.is_action_pressed("ui_up"):
 			arrowkeys.y -= 1
-		if Input.is_action_pressed("rightarrow"):
+		if Input.is_action_pressed("ui_right"):
 			arrowkeys.x += 1
 		
 		vector = arrowkeys*playerspeed
@@ -88,11 +92,11 @@ func _physics_process(_delta: float) -> void:
 			cooldowns[i] -= 1
 			cooldowns[i] = clamp(cooldowns[i], 0, 10000)
 		
-		if Input.is_action_pressed("o"):
+		if Input.is_action_pressed("lclick"):
 			pressed[0] = 1
-		if Input.is_action_pressed("i"):
+		if Input.is_action_pressed("rclick"):
 			pressed[1] = 1
-		if Input.is_action_pressed("p"):
+		if Input.is_action_pressed("shift"):
 			pressed[2] = 1
 		if Input.is_action_pressed("super"):
 			pressed[3] = 1
@@ -101,7 +105,7 @@ func _physics_process(_delta: float) -> void:
 		
 		
 		if pressed != [0,0,0,0,0]:
-			OnlineMatch.custom_rpc(self, "DoAttacks", [pressed])
+			OnlineMatch.custom_rpc(self, "DoAttacks", [pressed]) ## make sure to have a DoAttacks function in all oc the character scripts
 			pressed = [0,0,0,0,0]
 		
 		

@@ -6,11 +6,11 @@ extends Node2D
 # var b: String = "text"
 
 var player = preload("res://source/playerstuff/Player.tscn")
+var carlos = preload("res://source/playerstuff/characters/Carlos.tscn")
 var endscreen = preload("res://source/login and menus/endPopup.tscn")
 var myID
 var selection
 var Players = {}
-var AlivePlayers = {}
 var ReadyPlayers = {}
 
 
@@ -39,22 +39,43 @@ func StartGame(players):
 func setupGame(players):
 	## this section will need to be overhauled
 	Players = players
-	AlivePlayers = players
+	
+	
+	
 	#id here is 1 2 3 or 4
-	for id in players:
-		var currentPlayer = player.instance()
-		currentPlayer.name = str(id)
-		$PlayersSpawnUnder.add_child(currentPlayer)
-		currentPlayer.set_network_master(id)
-		currentPlayer.position = get_node("PlayerSpawnPoints/Player" + str(id)).position
-		currentPlayer.connect("playerdied", self, "playerdeath", [id])
-	myID = OnlineMatch.get_network_unique_id()
-	var player = $PlayersSpawnUnder.get_node(str(myID))
+	#for id in players:
+	#	var currentPlayer = player.instance()
+	#	currentPlayer.name = str(id)
+	#	$PlayersSpawnUnder.add_child(currentPlayer)
+	#	currentPlayer.set_network_master(id)
+	#	currentPlayer.position = get_node("PlayerSpawnPoints/Player" + str(id)).position
+	#	currentPlayer.connect("playerdied", self, "playerdeath", [id])
+	#myID = OnlineMatch.get_network_unique_id()
+	#var player = $PlayersSpawnUnder.get_node(str(myID))
+	#selection = get_parent().get_node("Control/ReadyScreen").selectid
+	#player.username = Online.nakama_session.username
+	#player.charid = selection
+	
+	
+	var character
 	selection = get_parent().get_node("Control/ReadyScreen").selectid
-	player.username = Online.nakama_session.username
-	player.charid = selection
-	#yield(get_tree().create_timer(5.0), "timeout")
-	player.playerControlled = true
+	myID = OnlineMatch.get_network_unique_id()
+	
+	match selection:
+		1:
+			character = carlos.instance()
+			
+			
+	
+	character.name = str(myID)
+	character.playerControlled = true
+	$PlayersSpawnUnder.add_child(character)
+	character.set_network_master(myID)
+	character.position = get_node("PlayerSpawnPoints/Player" + str(myID)).position
+	character.username = Online.nakama_session.username
+	
+	yield(get_tree().create_timer(0.2), "timeout")
+	character.playerControlled = true
 	OnlineMatch.custom_rpc_id_sync(self, 1, "finishedSetup", [myID])
 	get_parent().HideMatchUI()
 	get_parent().get_node("sound/login1").stop()

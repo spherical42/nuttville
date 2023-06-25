@@ -201,7 +201,7 @@ func _physics_process(_delta: float) -> void:
 		
 		## remeber to update cooldowns
 		
-		if Input.is_action_pressed("i"):
+		if Input.is_action_pressed("rclick"):
 			if i_cd == 0:
 				press_i = true
 				match moveset:
@@ -214,7 +214,7 @@ func _physics_process(_delta: float) -> void:
 					_:
 						pass
 		
-		if Input.is_action_pressed("o"):
+		if Input.is_action_pressed("lclick"):
 			if o_cd == 0:
 				press_o = true
 				match moveset:
@@ -227,7 +227,7 @@ func _physics_process(_delta: float) -> void:
 					_:
 						pass
 		
-		if Input.is_action_pressed("p"):
+		if Input.is_action_pressed("shift"):
 			if p_cd == 0:
 				press_p = true
 				match moveset:

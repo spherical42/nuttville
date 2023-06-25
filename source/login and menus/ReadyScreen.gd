@@ -69,7 +69,6 @@ func _on_Button_button_down() -> void:
 	
 	emit_signal("PlayerReady")
 	$"1".disabled = true
-	$"2".disabled = true
 	pass # Replace with function body.
 
 
@@ -81,20 +80,6 @@ func _on_1_button_down() -> void:
 	pass # Replace with function body.
 
 
-func _on_2_button_down() -> void:
-	get_parent().get_parent().get_node("sound/uisound/click").play()
-	
-	selectid = 2
-	$Button.disabled = false
-	pass # Replace with function body.
-
-
-func _on_3_button_down() -> void:
-	get_parent().get_parent().get_node("sound/uisound/click").play()
-	
-	selectid = 3
-	$Button.disabled = false
-	pass # Replace with function body.
 
 
 
