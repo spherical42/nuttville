@@ -89,7 +89,7 @@ func _physics_process(_delta: float) -> void:
 		get_parent().get_parent().get_node("Camera2D").position = position
 		
 		for i in range(cooldowns.size()):
-			cooldowns[i] -= 1
+			cooldowns[i] -= _delta
 			cooldowns[i] = clamp(cooldowns[i], 0, 10000)
 		
 		if Input.is_action_pressed("lclick"):
@@ -105,7 +105,8 @@ func _physics_process(_delta: float) -> void:
 		
 		
 		if pressed != [0,0,0,0,0]:
-			OnlineMatch.custom_rpc(self, "DoAttacks", [pressed]) ## make sure to have a DoAttacks function in all oc the character scripts
+			OnlineMatch.custom_rpc(self, "DoAttacks", [pressed, cooldowns]) ## make sure to have a DoAttacks function in all oc the character scripts
+			DoAttacks(pressed,cooldowns)
 			pressed = [0,0,0,0,0]
 		
 		
@@ -124,7 +125,9 @@ func UpdatePos(current, looking, animdir):
 	anim_dir = animdir
 	
 
-
+func DoAttacks(p, c):
+	print("this should not be printed")
+	pass
 
 func Die():
 	emit_signal("playerdied")

@@ -1,6 +1,26 @@
 extends KinematicBody2D
 
 
+
+
+
+
+
+### THIS SCRIPT IS PURELY FOR REFERENCE AND IS NOT BEING USED CURRENTLY ###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Declare member variables here. Examples:
 # var a: int = 2
 # var b: String = "text"
