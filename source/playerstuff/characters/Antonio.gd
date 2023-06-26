@@ -3,7 +3,7 @@ extends Character
 
 
 func _ready():
-	selectid = 1
+	selectid = 2
 	maxhp = 1000
 	playerspeed = 4
 	._ready()
