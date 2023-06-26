@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/cmu-typewriter/Typewriter/cmuntb.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://source/playerstuff/characters/Antonio.gd" type="Script" id=2]
+[ext_resource path="res://assets/textures/panasonic_sheet_1.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 8 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 24, 64 )
+
+[node name="Antonio" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 1.90735e-06, -64 )
+scale = Vector2( 0.888889, 0.888889 )
+texture = ExtResource( 3 )
+hframes = 10
+vframes = 10
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -16 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
+[node name="lookin parent" type="Node2D" parent="."]
+position = Vector2( 0, -32 )
+
+[node name="lookin" type="Position2D" parent="lookin parent"]
+position = Vector2( 80, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="lookin parent"]
+margin_left = 72.0
+margin_top = -8.0
+margin_right = 88.0
+margin_bottom = 8.0
+
+[node name="Nametag" type="Label" parent="."]
+margin_left = -128.0
+margin_top = -176.0
+margin_right = 128.0
+margin_bottom = -143.0
+custom_fonts/font = SubResource( 2 )
+align = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 7.62939e-06, -64 )
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -7.62939e-06, 0 )
+shape = SubResource( 3 )
+
+[node name="blue" type="ColorRect" parent="."]
+margin_left = -40.0
+margin_top = -152.0
+margin_right = 40.0
+margin_bottom = -128.0
+color = Color( 0.105882, 0.192157, 0.886275, 1 )
+
+[node name="red" type="ColorRect" parent="."]
+margin_left = -40.0
+margin_top = -152.0
+margin_right = 40.0
+margin_bottom = -128.0
+color = Color( 0.733333, 0.129412, 0.129412, 1 )
+
+[node name="hpbar" type="Node2D" parent="."]
+
+[node name="back" type="ColorRect" parent="hpbar"]
+margin_left = -32.0
+margin_top = -144.0
+margin_right = 32.0
+margin_bottom = -136.0
+color = Color( 1, 0, 0, 1 )
+
+[node name="bar" type="ColorRect" parent="hpbar"]
+margin_left = -32.0
+margin_top = -144.0
+margin_right = 32.0
+margin_bottom = -136.0
+color = Color( 0, 1, 0, 1 )
+
+[node name="Label" type="Label" parent="hpbar"]
+margin_left = 40.0
+margin_top = -152.0
+margin_right = 80.0
+margin_bottom = -138.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

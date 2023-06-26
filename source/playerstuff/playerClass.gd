@@ -11,6 +11,7 @@ var vector : Vector2
 var arrowkeys : Vector2
 var anim_dir : Vector2
 var last_dir : Vector2
+var zoom = 1
 var playerspeed = 7
 var pressed = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] 1 for pressed 0 for not
 var cooldowns = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] frames of cooldown left
@@ -75,6 +76,17 @@ func _physics_process(_delta: float) -> void:
 			arrowkeys.y -= 1
 		if Input.is_action_pressed("ui_right"):
 			arrowkeys.x += 1
+		
+		
+		if Input.is_action_pressed("scrldwn"):
+			print("out")
+			zoom += 0.02
+		if Input.is_action_pressed("scrlup"):
+			print("in")
+			zoom -= 0.02
+		
+		get_parent().get_parent().get_node("Camera2D").zoom = Vector2(zoom, zoom)
+		get_parent().get_parent().get_node("Camera2D").scale = Vector2(zoom, zoom)
 		
 		vector = arrowkeys*playerspeed
 		

@@ -382,6 +382,8 @@ margin_left = -768.0
 margin_top = -432.0
 margin_right = 768.0
 margin_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="Username" type="Label" parent="Players/Camera2D/ui"]

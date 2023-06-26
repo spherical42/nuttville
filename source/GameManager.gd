@@ -7,6 +7,7 @@ extends Node2D
 
 var player = preload("res://source/playerstuff/Player.tscn")
 var carlos = preload("res://source/playerstuff/characters/Carlos.tscn")
+var antonio = preload("res://source/playerstuff/characters/Antonio.tscn")
 var endscreen = preload("res://source/login and menus/endPopup.tscn")
 var myID
 var selection
@@ -64,7 +65,8 @@ func setupGame(players):
 	match selection:
 		1:
 			character = carlos.instance()
-			
+		2:
+			character = antonio.instance()
 			
 	
 	character.name = str(myID)
@@ -89,8 +91,9 @@ func finishedSetup(id):
 		get_parent().startGame() #does nothing atm
 
 
+
+
 func PlayerLeft(player):
-	
 	pass
 
 func hostleftcheck(error):

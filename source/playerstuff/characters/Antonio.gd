@@ -4,8 +4,8 @@ extends Character
 
 func _ready():
 	selectid = 1
-	maxhp = 800
-	playerspeed = 5
+	maxhp = 1000
+	playerspeed = 4
 	._ready()
 
 func _get_custom_rpc_methods():

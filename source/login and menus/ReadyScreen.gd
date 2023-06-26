@@ -23,13 +23,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	match selectid:
 		1: 
-			get_node("ColorRect").set_position(Vector2(352, 8))
+			get_node("selector").set_position($"1".rect_position)
 		2: 
-			get_node("ColorRect").set_position(Vector2(352, 152))
+			get_node("selector").set_position($"2".rect_position)
 		3:
-			get_node("ColorRect").set_position(Vector2(352, 296))
+			get_node("selector").set_position(Vector2(352, 296))
 		_: 
-			get_node("ColorRect").set_position(Vector2(-576, 128))
+			get_node("selector").set_position(Vector2(-576, 128))
 
 
 #remember this if from the connection from OnlineMatch.connect("matchmaker_matched",self,"AddPlayers")
@@ -69,6 +69,7 @@ func _on_Button_button_down() -> void:
 	
 	emit_signal("PlayerReady")
 	$"1".disabled = true
+	$"2".disabled = true
 	pass # Replace with function body.
 
 
@@ -81,7 +82,9 @@ func _on_1_button_down() -> void:
 
 
 
-
-
-
-
+func _on_2_button_down():
+	get_parent().get_parent().get_node("sound/uisound/click").play()
+	
+	selectid = 2
+	$Button.disabled = false
+	pass # Replace with function body.
