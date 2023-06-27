@@ -44,11 +44,17 @@ func _ready() -> void:
 
 
 func playerReady():
-	OnlineMatch.custom_rpc_sync(self, "playerIsReady", [OnlineMatch.get_my_session_id()])
+	OnlineMatch.custom_rpc_sync(self, "playerIsReady", [OnlineMatch.get_my_session_id(), $Control/ReadyScreen.selectid])
 	
 
-func playerIsReady(id):
-	$Control/ReadyScreen.setReadyStatus(id, "Ready")
+func playerIsReady(id, selid):
+	var selection : String
+	match selid:
+		1: selection = "Carlos"
+		2: selection = "Antonio"
+	
+	
+	$Control/ReadyScreen.setReadyStatus(id, selection)
 	
 	if OnlineMatch.is_network_server():
 		readyPlayers[id] = true
