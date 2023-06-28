@@ -36,7 +36,7 @@ margin_top = -24.0
 margin_right = 24.0
 margin_bottom = 44.0
 theme = SubResource( 1 )
-text = "6"
+text = "0"
 align = 1
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -14,6 +14,8 @@ func createPlayer(id,usrname,charid):
 		match charid:
 			1:
 				character = get_parent().carlos.instance()
+			2:
+				character = get_parent().antonio.instance()
 		
 		character.name = str(id)
 		add_child(character)

@@ -15,7 +15,7 @@ var zoom = 1
 var playerspeed = 7
 var pressed = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] 1 for pressed 0 for not
 var cooldowns = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] seconds of cooldown left
-var maxcds = [0,0,0,0,0] #in seconds
+var maxcds = [0,0,0,0] #in seconds
 var maxhp = 1000
 var hp = 1000
 var oldpos
