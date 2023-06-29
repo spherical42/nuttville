@@ -82,12 +82,20 @@ theme = ExtResource( 14 )
 
 [node name="ReadyScreen" parent="Control" instance=ExtResource( 1 )]
 visible = false
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
 mouse_filter = 2
 
 [node name="MatchFound" type="Control" parent="Control"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
 mouse_filter = 2
 script = ExtResource( 12 )
 
@@ -99,10 +107,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Control/MatchFound"]
-margin_left = 248.0
-margin_top = 184.0
-margin_right = 392.0
-margin_bottom = 216.0
+margin_left = 316.0
+margin_top = 277.0
+margin_right = 460.0
+margin_bottom = 309.0
 theme = SubResource( 1 )
 custom_colors/font_color = Color( 0.898039, 0.870588, 0.407843, 1 )
 text = "Match Found!"
@@ -112,6 +120,10 @@ align = 1
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
 mouse_filter = 2
 script = ExtResource( 2 )
 
@@ -137,30 +149,29 @@ text = "Finding Match"
 anims/loading = SubResource( 2 )
 
 [node name="FindMatch" type="Button" parent="Control/FindMatch"]
-margin_left = 232.0
-margin_top = 192.0
-margin_right = 414.0
-margin_bottom = 250.0
+margin_left = 316.0
+margin_top = 259.0
+margin_right = 498.0
+margin_bottom = 317.0
 text = "Find Match"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="2v2" type="CheckBox" parent="Control/FindMatch"]
-margin_left = 325.0
-margin_top = 98.0
-margin_right = 356.0
-margin_bottom = 135.0
+margin_left = 419.0
+margin_top = 175.0
+margin_right = 450.0
+margin_bottom = 212.0
 
 [node name="2v2label" type="Label" parent="Control/FindMatch"]
-margin_left = 176.0
-margin_top = 104.0
-margin_right = 336.0
-margin_bottom = 188.0
+margin_left = 256.0
+margin_top = 183.0
+margin_right = 696.0
+margin_bottom = 267.0
 custom_fonts/font = ExtResource( 7 )
-text = "Search for 2v2?
-Searches for 1v1
-by default."
+text = "Search for 2v2? 
+Searches for 1v1 by default."
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -168,6 +179,10 @@ __meta__ = {
 [node name="Login" type="Control" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
 mouse_filter = 2
 theme = ExtResource( 14 )
 script = ExtResource( 4 )
@@ -269,9 +284,12 @@ margin_bottom = 236.0
 text = "error here"
 
 [node name="start" type="Control" parent="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
 mouse_filter = 2
 script = ExtResource( 6 )
 

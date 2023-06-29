@@ -21,11 +21,17 @@ func _get_custom_rpc_methods():
 func DoAttacks(p, c):
 	if p[0] == 1 && c[0] == 0: # Left click
 		print("lclick")
+		
+		
+		
 		cooldowns[0] = maxcds[0]
 		pass
 	
 	if p[1] == 1 && c[1] == 0: # Right click
 		print("rclick")
+		
+		
+		
 		cooldowns[1] = maxcds[1]
 		pass
 	
