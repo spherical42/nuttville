@@ -84,6 +84,7 @@ func setupGame(players):
 	get_parent().get_node("sound/login2").stop()
 	get_parent().get_node("sound/login3").stop()
 	get_parent().get_node("Players/Camera2D/ui/currentsong").text = ""
+	get_parent().get_node("Players/Camera2D").canzoom = true
 
 func finishedSetup(id):
 	ReadyPlayers[id] = Players[id]

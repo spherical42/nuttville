@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://source/login and menus/ReadyScreen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/login and menus/FindMatch.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://source/login and menus/exit_menu.gd" type="Script" id=17]
 [ext_resource path="res://assets/sounds/music/blooddrain.ogg" type="AudioStream" id=18]
 [ext_resource path="res://source/PlayersSpawnUnder.gd" type="Script" id=19]
+[ext_resource path="res://source/Camera.gd" type="Script" id=20]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 7 )
@@ -390,6 +391,7 @@ position = Vector2( 5504, 1536 )
 [node name="Camera2D" type="Camera2D" parent="Players"]
 position = Vector2( 511.979, 287.704 )
 current = true
+script = ExtResource( 20 )
 
 [node name="ui" type="ReferenceRect" parent="Players/Camera2D"]
 anchor_left = 0.5

@@ -79,15 +79,17 @@ func _physics_process(_delta: float) -> void:
 			arrowkeys.x += 1
 		
 		
-		if Input.is_action_pressed("scrldwn"):
-			print("out")
-			zoom += 0.02
-		if Input.is_action_pressed("scrlup"):
-			print("in")
-			zoom -= 0.02
+		#if Input.is_action_pressed("scrldwn"):
+		#	print("out")
+		#	zoom += 0.02
+		#if Input.is_action_pressed("scrlup"):
+		#	print("in")
+		#	zoom -= 0.02
 		
-		get_parent().get_parent().get_node("Camera2D").zoom = Vector2(zoom, zoom)
-		get_parent().get_parent().get_node("Camera2D").scale = Vector2(zoom, zoom)
+		#zoom = clamp(zoom,0.5, 2)
+		
+		#get_parent().get_parent().get_node("Camera2D").zoom = Vector2(zoom, zoom)
+		#get_parent().get_parent().get_node("Camera2D").scale = Vector2(zoom, zoom)
 		
 		vector = arrowkeys*playerspeed
 		
@@ -131,6 +133,8 @@ func _physics_process(_delta: float) -> void:
 		oldpos = get_node("lookin parent").global_transform
 	
 	pass
+
+
 
 func UpdatePos(current, looking, animdir):
 	global_transform = current
