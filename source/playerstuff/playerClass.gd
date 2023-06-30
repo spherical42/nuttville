@@ -18,6 +18,7 @@ var cooldowns = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] seconds of cool
 var maxcds = [10,10,10,10] #in seconds
 var maxhp = 1000
 var hp = 1000
+var elapsed = 0.0
 var oldpos
 signal playerdied()
 
@@ -118,8 +119,9 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_pressed("dash"):
 			pressed[4] = 1
 		
+		elapsed += _delta
 		
-		if pressed != [0,0,0,0,0]:
+		if pressed != [0,0,0,0,0] && elapsed >= 0.05:
 			OnlineMatch.custom_rpc(self, "DoAttacks", [pressed, cooldowns]) ## make sure to have a DoAttacks function in all oc the character scripts
 			DoAttacks(pressed,cooldowns)
 			pressed = [0,0,0,0,0]
@@ -127,8 +129,9 @@ func _physics_process(_delta: float) -> void:
 		
 		
 		
-		if get_node("lookin parent").global_transform != oldpos:
+		if get_node("lookin parent").global_transform != oldpos && elapsed >= 0.05:
 			OnlineMatch.custom_rpc(self, "UpdatePos", [global_transform, get_node("lookin parent").rotation, anim_dir])
+			elapsed = 0.0
 		
 		oldpos = get_node("lookin parent").global_transform
 	
