@@ -5,7 +5,7 @@ extends Character
 func _ready():
 	selectid = 1
 	maxhp = 800
-	playerspeed = 5
+	playerspeed = 300
 	maxcds = [2,2,6,10] #[lclick, rclick, shift, space] seconds of cooldown
 	._ready()
 

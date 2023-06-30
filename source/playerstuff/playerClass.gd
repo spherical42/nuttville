@@ -12,7 +12,7 @@ var arrowkeys : Vector2
 var anim_dir : Vector2
 var last_dir : Vector2
 var zoom = 1
-var playerspeed = 7
+var playerspeed = 300
 var pressed = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] 1 for pressed 0 for not
 var cooldowns = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] seconds of cooldown left
 var maxcds = [10,10,10,10] #in seconds
@@ -91,7 +91,7 @@ func _physics_process(_delta: float) -> void:
 		#get_parent().get_parent().get_node("Camera2D").zoom = Vector2(zoom, zoom)
 		#get_parent().get_parent().get_node("Camera2D").scale = Vector2(zoom, zoom)
 		
-		vector = arrowkeys*playerspeed
+		vector = arrowkeys*playerspeed*_delta
 		
 		get_node("lookin parent").look_at(get_global_mouse_position())
 		
