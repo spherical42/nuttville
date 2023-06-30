@@ -73,7 +73,7 @@ func setupGame(players):
 	character.playerControlled = true
 	$PlayersSpawnUnder.add_child(character)
 	character.set_network_master(myID)
-	character.position = get_node("PlayerSpawnPoints/Player" + str(myID)).position
+	character.position = get_node("PlayerSpawnPoints/Player" + str(myID)).global_position
 	character.username = Online.nakama_session.username
 	
 	yield(get_tree().create_timer(0.2), "timeout")

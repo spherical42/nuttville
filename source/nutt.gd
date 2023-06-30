@@ -7,8 +7,11 @@ extends Node2D
 
 var pos = 0
 var done = false
+var originpos : Vector2
 signal gameover()
 
+func _ready():
+	originpos = position
 
 func _physics_process(delta: float) -> void:
 		
@@ -40,6 +43,6 @@ func _physics_process(delta: float) -> void:
 		if pos >= 1344:
 			emit_signal("gameover", "blue")
 			done = true
-		position.x = lerp(position.x - 3712, pos, 0.5) + 3712
-		get_node("Label").text = str(position.x - 3712)
+		position.x = lerp(position.x - originpos.x, pos, 0.5) + originpos.x
+		get_node("Label").text = str(position.x - originpos.x)
 

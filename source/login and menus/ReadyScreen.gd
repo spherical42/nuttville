@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 		3:
 			get_node("selector").set_position(Vector2(352, 296))
 		_: 
-			get_node("selector").set_position(Vector2(-576, 128))
+			get_node("selector").set_position(Vector2(-1728, -704))
 
 
 #remember this if from the connection from OnlineMatch.connect("matchmaker_matched",self,"AddPlayers")

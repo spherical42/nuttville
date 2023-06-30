@@ -45,7 +45,7 @@ tracks/0/keys = {
 script = ExtResource( 5 )
 
 [node name="environment" type="Node2D" parent="."]
-position = Vector2( 0, 1536 )
+position = Vector2( 2176, 2240 )
 
 [node name="map size2" type="ReferenceRect" parent="environment"]
 margin_left = 1664.0
@@ -375,6 +375,7 @@ text = "No"
 script = ExtResource( 3 )
 
 [node name="PlayerSpawnPoints" type="Node2D" parent="Players"]
+position = Vector2( 2176, 704 )
 
 [node name="Player1" type="Position2D" parent="Players/PlayerSpawnPoints"]
 position = Vector2( 1920, 384 )

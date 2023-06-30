@@ -20,7 +20,7 @@ margin_right = 252.0
 margin_bottom = 172.0
 
 [node name="selector" type="Node2D" parent="."]
-position = Vector2( -607, 53 )
+position = Vector2( -1728, -704 )
 
 [node name="ColorRect" type="ColorRect" parent="selector"]
 margin_left = -9.0
