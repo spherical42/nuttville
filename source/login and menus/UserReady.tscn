@@ -7,9 +7,11 @@ margin_right = 303.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 303.0
+margin_bottom = 20.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="Username" type="RichTextLabel" parent="."]
 margin_left = 4.91815
@@ -27,6 +29,3 @@ margin_top = 2.26523
 margin_right = 297.0
 margin_bottom = 42.2652
 text = "Not Ready"
-__meta__ = {
-"_edit_use_anchors_": false
-}

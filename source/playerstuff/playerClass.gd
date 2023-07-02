@@ -35,7 +35,7 @@ func _ready():
 	if playerControlled == true:
 		## something creating the character for everyone else
 		OnlineMatch.custom_rpc_sync(get_parent(), "createPlayer", [name, username, selectid])
-		playerControlled = false
+		playerControlled = false # gets set back to true in game manager script
 	
 	hp = maxhp
 	

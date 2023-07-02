@@ -39,6 +39,7 @@ func AddPlayers(players):
 		var userReady = UserReady.instance()
 		$VBoxContainer.add_child(userReady)
 		userReady.setUsername(players[id]["username"])
+		userReady.setColor(players[id].peer_id)
 		userReady.name = id
 
 func PlayerJoined(player):
