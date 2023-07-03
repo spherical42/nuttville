@@ -20,6 +20,7 @@ var maxhp = 1000
 var hp = 1000
 var elapsed = 0.0
 var oldpos
+var goto # set in playersspawnunder
 signal playerdied()
 
 func _ready():
@@ -35,6 +36,7 @@ func _ready():
 	if playerControlled == true:
 		## something creating the character for everyone else
 		OnlineMatch.custom_rpc_sync(get_parent(), "createPlayer", [name, username, selectid])
+		goto = global_position
 		playerControlled = false # gets set back to true in game manager script
 	
 	hp = maxhp
@@ -119,17 +121,21 @@ func _physics_process(_delta: float) -> void:
 		
 		
 		if get_node("lookin parent").global_transform != oldpos && elapsed >= 0.05:
-			OnlineMatch.custom_rpc(self, "UpdatePos", [global_transform, get_node("lookin parent").rotation, anim_dir])
+			OnlineMatch.custom_rpc(self, "UpdatePos", [global_position, get_node("lookin parent").rotation, anim_dir])
 			elapsed = 0.0
 		
 		oldpos = get_node("lookin parent").global_transform
+	elif playerControlled == false:
+		global_position = lerp(global_position, goto, 0.35)
+	
 	
 	pass
 
 
 
 func UpdatePos(current, looking, animdir):
-	global_transform = current
+	#global_position = current
+	goto = current
 	get_node("lookin parent").rotation = looking
 	anim_dir = animdir
 	

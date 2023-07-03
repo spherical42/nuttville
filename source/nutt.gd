@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 			if p.team == "red":
 				dist *= -1
 				
-			dir += dist/45
+			dir += dist/30
 		
 		pos += dir*delta
 		
