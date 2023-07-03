@@ -7,7 +7,7 @@ func _get_custom_rpc_methods():
 		"createPlayer"
 	]
 
-func createPlayer(id,usrname,charid):
+func createPlayer(id,uname,charid):
 	if id != str(OnlineMatch.get_network_unique_id()):
 		var character
 		
@@ -21,7 +21,7 @@ func createPlayer(id,usrname,charid):
 		add_child(character)
 		character.set_network_master(int(id))
 		character.position = get_parent().get_node("PlayerSpawnPoints/Player" + str(id)).position
-		character.username = usrname
+		character.username = uname
 		
 	
 	pass

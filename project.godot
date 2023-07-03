@@ -106,6 +106,7 @@ _global_script_class_icons={
 
 config/name="Nuttville"
 run/main_scene="res://source/Main.tscn"
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -117,7 +118,7 @@ Savelogin="*res://source/login and menus/savelogin.tscn"
 
 [debug]
 
-multirun/number_of_windows=4
+multirun/number_of_windows=2
 multirun/window_distance=1270
 multirun/add_custom_args=true
 multirun/first_window_args="listen"
@@ -245,7 +246,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 0.164706, 0.164706, 0.164706, 1 )
