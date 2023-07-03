@@ -41,7 +41,9 @@ func _ready() -> void:
 	
 	pass # Replace with function body.
 
-
+func _unhandled_input(event):
+	if event.is_action_released("fullscreen"):
+		OS.window_fullscreen = !OS.window_fullscreen
 
 func playerReady():
 	OnlineMatch.custom_rpc_sync(self, "playerIsReady", [OnlineMatch.get_my_session_id(), $Control/ReadyScreen.selectid])
