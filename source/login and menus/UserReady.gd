@@ -32,6 +32,14 @@ func setColor(pid):
 				false:
 					$ColorRect.color = Color(0,0,1,1) # makes blue
 			blue = !blue
+	yield(get_tree(), "idle_frame")
+
+func getColor():
+	match $ColorRect.color:
+		Color(0,0,1,1):
+			return "blue"
+		Color(1,0,0,1):
+			return "red"
 
 func setReady(readytext):
 	$Ready.text = readytext

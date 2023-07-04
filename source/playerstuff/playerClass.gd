@@ -25,10 +25,10 @@ signal playerdied()
 
 func _ready():
 	yield(get_tree().create_timer(0.1), "timeout")
-	if get_parent().get_parent().blue.find(name):
+	if get_parent().get_parent().blue.find(name) != -1:
 		get_node("red").hide()
 		team = "blue"
-	if get_parent().get_parent().red.find(name):
+	if get_parent().get_parent().red.find(name) != -1:
 		get_node("blue").hide()
 		team = "red"
 	

@@ -46,7 +46,7 @@ func AddPlayers(players):
 		$VBoxContainer.add_child(userReady)
 		userReady.setUsername(players[id]["username"])
 		userReady.setColor(players[id].peer_id)
-		userReady.name = id
+		userReady.name = str(players[id].peer_id)
 
 func PlayerJoined(player):
 	print(player)
@@ -67,7 +67,7 @@ func MatchNotReady(player):
 
 
 func setReadyStatus(id, status):
-	var statusObject = $VBoxContainer.get_node_or_null(id)
+	var statusObject = $VBoxContainer.get_node_or_null(str(id))
 	if statusObject:
 		statusObject.setReady(status)
 
@@ -95,19 +95,19 @@ func _on_2_button_down():
 
 
 func _on_switch_button_down():
-	OnlineMatch.custom_rpc_sync(self, "offerswitch", [OnlineMatch.get_my_session_id()])
+	OnlineMatch.custom_rpc_sync(self, "offerswitch", [str(OnlineMatch.get_network_unique_id())])
 	
 
 
 func offerswitch(id):
-	if !switching.find(id):
+	if switching.find(id) == -1:
 		switching.append(id)
 	
-	var o = $VBoxContainer.get_node_or_null(id)
+	var o = $VBoxContainer.get_node(id)
 	o.get_node("switch").visible = true
 	
 	if switching.size() >= 2:
-		
+		print("switching")
 		var red = get_parent().get_parent().get_node("Players").red
 		var blue = get_parent().get_parent().get_node("Players").blue
 		
@@ -115,13 +115,17 @@ func offerswitch(id):
 			# do something to red and blue arrays
 			var ob = $VBoxContainer.get_node_or_null(switching[i])
 			ob.get_node("switch").visible = false
-			ob.setColor(0)
-			if ob.blue:
-				blue.erase(switching[i])
-				red.append(switching[i])
-			elif !ob.blue:
-				red.erase(switching[i])
-				blue.append(switching[i])
+			yield(ob.setColor(0), "completed")
+			ob = ob.getColor()
+			match ob:
+				"red":
+					blue.erase(switching[i])
+					red.append(switching[i])
+				"blue":
+					red.erase(switching[i])
+					blue.append(switching[i])
+				_:
+					print("ERROR ReadyScreen.gd line 114")
 			
 		
 		print("red: " + str(red) + " blue: " + str(blue))

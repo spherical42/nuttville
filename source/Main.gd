@@ -46,7 +46,7 @@ func _unhandled_input(event):
 		OS.window_fullscreen = !OS.window_fullscreen
 
 func playerReady():
-	OnlineMatch.custom_rpc_sync(self, "playerIsReady", [OnlineMatch.get_my_session_id(), $Control/ReadyScreen.selectid])
+	OnlineMatch.custom_rpc_sync(self, "playerIsReady", [OnlineMatch.get_network_unique_id(), $Control/ReadyScreen.selectid])
 	
 
 func playerIsReady(id, selid):
@@ -59,7 +59,7 @@ func playerIsReady(id, selid):
 	$Control/ReadyScreen.setReadyStatus(id, selection)
 	
 	if OnlineMatch.is_network_server():
-		readyPlayers[id] = true
+		readyPlayers[id] = true #######may be an issue
 		if readyPlayers.size() == OnlineMatch.players.size():
 			OnlineMatch.start_playing()
 			$Players.StartGame(OnlineMatch.get_player_names_by_peer_id())

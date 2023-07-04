@@ -75,16 +75,16 @@ func setupGame(players):
 	$PlayersSpawnUnder.add_child(character)
 	character.set_network_master(myID)
 	var teamid # alright this part is confusing but it makes it go to the correct spot
-	match blue.find(myID):
-		1:
+	match blue.find(str(myID)):
+		0:
 			teamid = 1
-		2:
+		1:
 			teamid = 3
 		_:
-			match red.find(myID):
-				1:
+			match red.find(str(myID)):
+				0:
 					teamid = 2
-				2:
+				1:
 					teamid = 4
 	
 	character.global_position = get_node("PlayerSpawnPoints/Player" + str(teamid)).global_position
