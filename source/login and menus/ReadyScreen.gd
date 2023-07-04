@@ -107,31 +107,36 @@ func offerswitch(id):
 	o.get_node("switch").visible = true
 	
 	if switching.size() >= 2:
-		print("switching")
-		var red = get_parent().get_parent().get_node("Players").red
-		var blue = get_parent().get_parent().get_node("Players").blue
 		
-		for i in range(switching.size()):
-			# do something to red and blue arrays
-			var ob = $VBoxContainer.get_node_or_null(switching[i])
-			ob.get_node("switch").visible = false
-			yield(ob.setColor(0), "completed")
-			ob = ob.getColor()
-			match ob:
-				"red":
-					blue.erase(switching[i])
-					red.append(switching[i])
-				"blue":
-					red.erase(switching[i])
-					blue.append(switching[i])
-				_:
-					print("ERROR ReadyScreen.gd line 114")
+		if $VBoxContainer.get_node(switching[0]).getColor() != $VBoxContainer.get_node(switching[1]).getColor():
+			print("switching")
+			var red = get_parent().get_parent().get_node("Players").red
+			var blue = get_parent().get_parent().get_node("Players").blue
+			for i in range(switching.size()):
+				# do something to red and blue arrays
+				var ob = $VBoxContainer.get_node_or_null(switching[i])
+				ob.get_node("switch").visible = false
+				yield(ob.setColor(0), "completed")
+				ob = ob.getColor()
+				match ob:
+					"red":
+						blue.erase(switching[i])
+						red.append(switching[i])
+					"blue":
+						red.erase(switching[i])
+						blue.append(switching[i])
+					_:
+						print("ERROR ReadyScreen.gd line 114")
+				
+			
+			print("red: " + str(red) + " blue: " + str(blue))
+			
+			get_parent().get_parent().get_node("Players").red = red #set to new
+			get_parent().get_parent().get_node("Players").blue = blue 
 			
 		
-		print("red: " + str(red) + " blue: " + str(blue))
 		
-		get_parent().get_parent().get_node("Players").red = red #set to new
-		get_parent().get_parent().get_node("Players").blue = blue 
+		
 		
 		switching = []
 		
