@@ -141,6 +141,7 @@ func UpdatePos(current, looking, animdir):
 	
 
 func DoAttacks(p, c):
+	#this is overwritten by the character's script
 	print("this should not be printed")
 	pass
 
