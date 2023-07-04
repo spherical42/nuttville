@@ -134,7 +134,9 @@ func offerswitch(id):
 			get_parent().get_parent().get_node("Players").red = red #set to new
 			get_parent().get_parent().get_node("Players").blue = blue 
 			
-		
+		else:
+			for i in range(switching.size()):
+				$VBoxContainer.get_node_or_null(switching[i]).get_node("switch").visible = false
 		
 		
 		
