@@ -21,6 +21,8 @@ func createPlayer(id,uname,charid):
 		character.goto = get_parent().get_node("PlayerSpawnPoints/Player" + str(id)).global_position
 		add_child(character)
 		character.set_network_master(int(id))
+		
+		
 		character.global_position = get_parent().get_node("PlayerSpawnPoints/Player" + str(id)).global_position
 		character.username = uname
 		

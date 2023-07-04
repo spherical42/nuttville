@@ -25,13 +25,12 @@ signal playerdied()
 
 func _ready():
 	yield(get_tree().create_timer(0.1), "timeout")
-	match name:
-		"1", "3":
-			get_node("red").hide()
-			team = "blue"
-		"2", "4":
-			get_node("blue").hide()
-			team = "red"
+	if get_parent().get_parent().blue.find(name):
+		get_node("red").hide()
+		team = "blue"
+	if get_parent().get_parent().red.find(name):
+		get_node("blue").hide()
+		team = "red"
 	
 	if playerControlled == true:
 		## something creating the character for everyone else

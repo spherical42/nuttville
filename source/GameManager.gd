@@ -13,7 +13,8 @@ var myID
 var selection
 var Players = {}
 var ReadyPlayers = {}
-
+var blue = ["1","3"] #these change with team switching
+var red = ["2","4"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -73,7 +74,20 @@ func setupGame(players):
 	character.playerControlled = true
 	$PlayersSpawnUnder.add_child(character)
 	character.set_network_master(myID)
-	character.global_position = get_node("PlayerSpawnPoints/Player" + str(myID)).global_position
+	var teamid # alright this part is confusing but it makes it go to the correct spot
+	match blue.find(myID):
+		1:
+			teamid = 1
+		2:
+			teamid = 3
+		_:
+			match red.find(myID):
+				1:
+					teamid = 2
+				2:
+					teamid = 4
+	
+	character.global_position = get_node("PlayerSpawnPoints/Player" + str(teamid)).global_position
 	character.username = Online.nakama_session.username
 	
 	yield(get_tree().create_timer(0.2), "timeout")

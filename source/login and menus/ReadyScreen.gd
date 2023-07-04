@@ -6,7 +6,9 @@ extends Control
 # var b: String = "text"
 var selectid = 0
 var UserReady = preload("res://source/login and menus/UserReady.tscn")
+var switching = []
 signal PlayerReady()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +21,10 @@ func _ready() -> void:
 	OnlineMatch.connect("matchmaker_matched", self,"AddPlayers")
 	pass # Replace with function body.
 
+func _get_custom_rpc_methods():
+	return [
+		"offerswitch"
+	]
 
 func _process(_delta: float) -> void:
 	match selectid:
@@ -71,7 +77,6 @@ func _on_Button_button_down() -> void:
 	emit_signal("PlayerReady")
 	$"1".disabled = true
 	$"2".disabled = true
-	pass # Replace with function body.
 
 
 func _on_1_button_down() -> void:
@@ -79,7 +84,6 @@ func _on_1_button_down() -> void:
 	
 	selectid = 1
 	$Button.disabled = false
-	pass # Replace with function body.
 
 
 
@@ -88,4 +92,43 @@ func _on_2_button_down():
 	
 	selectid = 2
 	$Button.disabled = false
-	pass # Replace with function body.
+
+
+func _on_switch_button_down():
+	OnlineMatch.custom_rpc_sync(self, "offerswitch", [OnlineMatch.get_my_session_id()])
+	
+
+
+func offerswitch(id):
+	if !switching.find(id):
+		switching.append(id)
+	
+	var o = $VBoxContainer.get_node_or_null(id)
+	o.get_node("switch").visible = true
+	
+	if switching.size() >= 2:
+		
+		var red = get_parent().get_parent().get_node("Players").red
+		var blue = get_parent().get_parent().get_node("Players").blue
+		
+		for i in range(switching.size()):
+			# do something to red and blue arrays
+			var ob = $VBoxContainer.get_node_or_null(switching[i])
+			ob.get_node("switch").visible = false
+			ob.setColor(0)
+			if ob.blue:
+				blue.erase(switching[i])
+				red.append(switching[i])
+			elif !ob.blue:
+				red.erase(switching[i])
+				blue.append(switching[i])
+			
+		
+		print("red: " + str(red) + " blue: " + str(blue))
+		
+		get_parent().get_parent().get_node("Players").red = red #set to new
+		get_parent().get_parent().get_node("Players").blue = blue 
+		
+		switching = []
+		
+	
