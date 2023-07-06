@@ -6,7 +6,7 @@ func _ready():
 	selectid = 2
 	maxhp = 1000
 	playerspeed = 240
-	maxcds = [3,4,3,10] #[lclick, rclick, shift, space] seconds of cooldown
+	maxcds = [3,4,3] #[lclick, rclick, shift] seconds of cooldown
 	._ready()
 
 func _get_custom_rpc_methods():
@@ -18,22 +18,39 @@ func _get_custom_rpc_methods():
 	]
 
 
-func DoAttacks(p, c):
-	if p[0] == 1 && c[0] == 0: # Left click
-		print("lclick")
-		cooldowns[0] = maxcds[0]
+func DoAttacks(p, c, a):
+	if p[0] == 1 && c[0] == 0: # Space
+		
+		cooldowns[0] = 10
 		pass
 	
-	if p[1] == 1 && c[1] == 0: # Right click
-		print("rclick")
-		cooldowns[1] = maxcds[1]
+	if p[1] == 1 && c[1] <= 2.5: # Left click
+		if a[0] >= 1 && c[1] != 0:
+			#has a 0.5 attack they can use and has not waited 3 seconds
+			
+			#(attack code)
+			
+			pass
+		elif c[1] == 0:
+			#has waited at least 3 seconds since last using lclick
+			
+			#(attack code)
+			
+			ammo[0] = 2 #one less than the amount of attacks because attack was just used
+			pass
+		else: 
+			return 
+		
+		 #will always set cd to 3 seconds unless they havent waited 3 seconds and have no ammo
+		
+		cooldowns[1] = maxcds[0]
 		pass
 	
-	if p[2] == 1: # Shift
+	if p[2] == 1: # Right click
 		pass
-	if p[3] == 1: # Super
+	if p[3] == 1: # Shift
 		pass
-	if p[4] == 1: # Dash
+	if p[4] == 1: # Super
 		pass
 	
 	pass

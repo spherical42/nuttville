@@ -7,15 +7,17 @@ var username = ""
 var selectid #defined by child class
 var team
 var dead = false
+var inanim = false
 var vector : Vector2
 var arrowkeys : Vector2
 var anim_dir : Vector2
 var last_dir : Vector2
 var zoom = 1
 var playerspeed = 300
-var pressed = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] 1 for pressed 0 for not
-var cooldowns = [0,0,0,0,0] #[lclick, rclick, shift, ult, space] seconds of cooldown left
-var maxcds = [10,10,10,10] #in seconds
+var pressed = [0,0,0,0,0] #[space, lclick, rclick, shift, ult] 1 for pressed 0 for not
+var cooldowns = [0,0,0,0] #[space, lclick, rclick, shift] current seconds of cooldown left
+var ammo = [1,1,1] #[lclick, rclick, shift] unused by non ammo based attacks
+var maxcds = [10,10,10] #[lclick, rclick, shift] in seconds
 var maxhp = 1000
 var hp = 1000
 var elapsed = 0.0
@@ -25,10 +27,10 @@ signal playerdied()
 
 func _ready():
 	yield(get_tree().create_timer(0.1), "timeout")
-	if get_parent().get_parent().blue.find(name) != -1:
+	if get_parent().get_parent().blue.has(name):
 		get_node("red").hide()
 		team = "blue"
-	if get_parent().get_parent().red.find(name) != -1:
+	if get_parent().get_parent().red.has(name):
 		get_node("blue").hide()
 		team = "red"
 	
@@ -71,15 +73,16 @@ func _physics_process(_delta: float) -> void:
 		vector = Vector2()
 		arrowkeys = Vector2()
 		
-		if Input.is_action_pressed("ui_down"):
-			arrowkeys.y += 1
-		if Input.is_action_pressed("ui_left"):
-			arrowkeys.x -= 1
-		if Input.is_action_pressed("ui_up"):
-			arrowkeys.y -= 1
-		if Input.is_action_pressed("ui_right"):
-			arrowkeys.x += 1
-		
+		if !inanim:
+			if Input.is_action_pressed("ui_down"):
+				arrowkeys.y += 1
+			if Input.is_action_pressed("ui_left"):
+				arrowkeys.x -= 1
+			if Input.is_action_pressed("ui_up"):
+				arrowkeys.y -= 1
+			if Input.is_action_pressed("ui_right"):
+				arrowkeys.x += 1
+			
 		
 		
 		vector = arrowkeys*playerspeed*_delta
@@ -98,22 +101,24 @@ func _physics_process(_delta: float) -> void:
 			cooldowns[i] -= _delta
 			cooldowns[i] = clamp(cooldowns[i], 0, 10000)
 		
-		if Input.is_action_pressed("lclick"):
-			pressed[0] = 1
-		if Input.is_action_pressed("rclick"):
-			pressed[1] = 1
-		if Input.is_action_pressed("shift"):
-			pressed[2] = 1
-		if Input.is_action_pressed("super"):
-			pressed[3] = 1
-		if Input.is_action_pressed("dash"):
-			pressed[4] = 1
+		if !inanim:
+			if Input.is_action_pressed("dash"):
+				pressed[0] = 1
+			if Input.is_action_pressed("lclick"):
+				pressed[1] = 1
+			if Input.is_action_pressed("rclick"):
+				pressed[2] = 1
+			if Input.is_action_pressed("shift"):
+				pressed[3] = 1
+			if Input.is_action_pressed("super"):
+				pressed[4] = 1
+		
 		
 		elapsed += _delta
 		
 		if pressed != [0,0,0,0,0] && elapsed >= 0.05:
-			OnlineMatch.custom_rpc(self, "DoAttacks", [pressed, cooldowns]) ## make sure to have a DoAttacks function in all oc the character scripts
-			DoAttacks(pressed,cooldowns)
+			OnlineMatch.custom_rpc(self, "DoAttacks", [pressed, cooldowns, ammo]) ## make sure to have a DoAttacks function in all oc the character scripts
+			DoAttacks(pressed,cooldowns,ammo)
 			pressed = [0,0,0,0,0]
 		
 		
@@ -139,7 +144,7 @@ func UpdatePos(current, looking, animdir):
 	anim_dir = animdir
 	
 
-func DoAttacks(p, c):
+func DoAttacks(p, c, a):
 	#this is overwritten by the character's script
 	print("this should not be printed")
 	pass

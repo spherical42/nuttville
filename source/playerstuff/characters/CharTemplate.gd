@@ -3,10 +3,10 @@ extends Character
 
 
 func _ready():
-	selectid = 1
-	maxhp = 800
-	playerspeed = 300
-	maxcds = [2,2,6] #[lclick, rclick, shift] seconds of cooldown
+	#selectid = id
+	#maxhp = maximum hp
+	#playerspeed = distance covered in pixels per second
+	#maxcds = [lclick, rclick, shift] seconds of cooldown
 	._ready()
 
 func _get_custom_rpc_methods():
@@ -25,7 +25,9 @@ func DoAttacks(p, c, a):
 		pass
 	
 	if p[1] == 1 && c[1] == 0: # Left click
-		print("lclick")
+		
+		
+		
 		cooldowns[1] = maxcds[0]
 		pass
 	
