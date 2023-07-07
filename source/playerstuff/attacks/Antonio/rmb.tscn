@@ -248,7 +248,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 448, -128 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 512, -256 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("CollisionPolygon2D2:position")
@@ -260,7 +260,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 512, -64 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 640, -128 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("CollisionPolygon2D3:position")
@@ -272,7 +272,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 512, 64 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 640, 128 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("CollisionPolygon2D4:position")
@@ -284,7 +284,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 448, 128 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 512, 256 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("CollisionPolygon2D5:position")
@@ -296,7 +296,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 320, 128 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 256, 256 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("CollisionPolygon2D6:position")
@@ -308,7 +308,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 256, 64 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 128, 128 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("CollisionPolygon2D7:position")
@@ -320,7 +320,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 256, -64 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 128, -128 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("CollisionPolygon2D8:position")
@@ -332,7 +332,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 320, -128 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 382.955, -1.04526 ), Vector2( 256, -256 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("CollisionPolygon2D:visible")

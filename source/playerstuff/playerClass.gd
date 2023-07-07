@@ -8,7 +8,6 @@ var selectid #defined by child class
 var team
 var dead = false
 var inanim = false
-var invincible = 0.0
 var vector : Vector2
 var arrowkeys : Vector2
 var anim_dir : Vector2
@@ -131,11 +130,11 @@ func _physics_process(_delta: float) -> void:
 			
 			pass
 		
-		invincible -= _delta
-		invincible = clamp(invincible, 0, 100)
+		
+		
 		
 		if get_node("lookin parent").global_transform != oldpos && elapsed >= 0.05:
-			OnlineMatch.custom_rpc(self, "UpdatePos", [global_position, get_node("lookin parent").rotation, anim_dir, invincible])
+			OnlineMatch.custom_rpc(self, "UpdatePos", [global_position, get_node("lookin parent").rotation, anim_dir])
 			
 		
 		if pressed != [0,0,0,0,0] && elapsed >= 0.05:
@@ -154,12 +153,13 @@ func _physics_process(_delta: float) -> void:
 
 
 
-func UpdatePos(current, looking, animdir, inv):
+func UpdatePos(current, looking, animdir):
 	#global_position = current
 	goto = current
 	get_node("lookin parent").rotation = looking
 	anim_dir = animdir
-	invincible = inv
+
+
 
 func DoAttacks(p, c, a):
 	#this is overwritten by the character's script
@@ -201,12 +201,14 @@ func deathtimer(time):
 
 
 func damage(amount, whohit, knockorigin=null, knockintensity=null):
-	if invincible <= 0:
-		hp -= amount
-		if hp <= 0:
-			Die()
-			return
-		hp = clamp(hp,0,maxhp)
+	
+	
+	hp -= amount
+	if hp <= 0:
+		Die()
+		return
+	hp = clamp(hp,0,maxhp)
+	
 	
 	if knockintensity != null:
 		#knockback
@@ -221,4 +223,3 @@ func damage(amount, whohit, knockorigin=null, knockintensity=null):
 func dash():
 	inanim = true
 	damage(0, "0", get_node("lookin parent/lookin").global_position, -400)
-	invincible = 2.0
