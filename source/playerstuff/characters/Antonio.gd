@@ -22,6 +22,7 @@ func _get_custom_rpc_methods():
 
 func DoAttacks(p, c, a):
 	if p[0] == 1 && c[0] == 0: # Space
+		dash()
 		
 		cooldowns[0] = 10
 		pass

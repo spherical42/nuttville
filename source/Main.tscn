@@ -441,6 +441,42 @@ margin_right = 1512.02
 margin_bottom = 840.296
 theme = ExtResource( 14 )
 
+[node name="cooldowns" type="Control" parent="Players/Camera2D/ui"]
+visible = false
+margin_left = 8.021
+margin_top = 792.296
+margin_right = 48.021
+margin_bottom = 832.296
+theme = ExtResource( 14 )
+
+[node name="dash" type="Label" parent="Players/Camera2D/ui/cooldowns"]
+margin_left = 248.0
+margin_top = 16.0
+margin_right = 308.0
+margin_bottom = 42.0
+text = "dash: "
+
+[node name="lmb" type="Label" parent="Players/Camera2D/ui/cooldowns"]
+margin_left = 376.0
+margin_top = 16.0
+margin_right = 436.0
+margin_bottom = 42.0
+text = "lmb: "
+
+[node name="rmb" type="Label" parent="Players/Camera2D/ui/cooldowns"]
+margin_left = 504.0
+margin_top = 16.0
+margin_right = 564.0
+margin_bottom = 42.0
+text = "rmb: "
+
+[node name="shift" type="Label" parent="Players/Camera2D/ui/cooldowns"]
+margin_left = 632.0
+margin_top = 16.0
+margin_right = 702.0
+margin_bottom = 42.0
+text = "shift: "
+
 [node name="PlayersSpawnUnder" type="Node2D" parent="Players"]
 script = ExtResource( 19 )
 

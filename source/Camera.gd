@@ -16,6 +16,15 @@ func _process(delta):
 		return
 	
 	if canzoom:
+		
+		var cds = get_parent().get_node("PlayersSpawnUnder/" + str(OnlineMatch.get_network_unique_id())).cooldowns
+		var labels = get_node("ui/cooldowns")
+		
+		labels.get_node("dash").text = "dash: " + str(cds[0])
+		labels.get_node("lmb").text = "lmb: " + str(cds[1])
+		labels.get_node("rmb").text = "rmb: " + str(cds[2])
+		labels.get_node("shift").text = "shift: " + str(cds[3])
+		
 		if Input.is_action_pressed("scrldwn"):
 			print("out")
 			zoomscl += 0.02
