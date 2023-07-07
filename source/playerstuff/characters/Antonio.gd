@@ -1,6 +1,8 @@
 extends Character
 
 
+var lmb = preload("res://source/playerstuff/attacks/Antonio/lmb.tscn")
+var rmb = preload("res://source/playerstuff/attacks/Antonio/rmb.tscn")
 
 func _ready():
 	selectid = 2
@@ -28,13 +30,14 @@ func DoAttacks(p, c, a):
 		if a[0] >= 1 && c[1] != 0:
 			#has a 0.5 attack they can use and has not waited 3 seconds
 			
-			#(attack code)
+			Swing()
+			ammo[0] -= 1
 			
 			pass
 		elif c[1] == 0:
 			#has waited at least 3 seconds since last using lclick
 			
-			#(attack code)
+			Swing()
 			
 			ammo[0] = 2 #one less than the amount of attacks because attack was just used
 			pass
@@ -46,7 +49,11 @@ func DoAttacks(p, c, a):
 		cooldowns[1] = maxcds[0]
 		pass
 	
-	if p[2] == 1: # Right click
+	if p[2] == 1 && c[2] == 0: # Right click
+		
+		Throw()
+		
+		cooldowns[2] = maxcds[1]
 		pass
 	if p[3] == 1: # Shift
 		pass
@@ -60,4 +67,22 @@ func _physics_process(_delta: float) -> void:
 	._physics_process(_delta)
 	
 	
+	pass
+
+func Swing():
+	inanim = true
+	damage(0, "0", get_node("lookin parent/lookin").global_position, -150)
+	var attack = lmb.instance()
+	attack.playerWhoShot = name
+	attack.team = team
+	get_node("lookin parent").add_child(attack)
+	attack.global_position = get_node("lookin parent/lookin").global_position
+	pass
+
+func Throw():
+	var attack = rmb.instance()
+	attack.playerWhoShot = name
+	attack.team = team
+	get_tree().get_nodes_in_group("GameWorld")[0].add_child(attack)
+	attack.global_transform = get_node("lookin parent/lookin").global_transform
 	pass

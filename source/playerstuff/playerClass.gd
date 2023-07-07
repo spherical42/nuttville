@@ -12,6 +12,7 @@ var vector : Vector2
 var arrowkeys : Vector2
 var anim_dir : Vector2
 var last_dir : Vector2
+var knockdist = Vector2(0,0)
 var zoom = 1
 var playerspeed = 300
 var pressed = [0,0,0,0,0] #[space, lclick, rclick, shift, ult] 1 for pressed 0 for not
@@ -83,11 +84,12 @@ func _physics_process(_delta: float) -> void:
 			if Input.is_action_pressed("ui_right"):
 				arrowkeys.x += 1
 			
+			get_node("lookin parent").look_at(get_global_mouse_position())
 		
 		
 		vector = arrowkeys*playerspeed*_delta
 		
-		get_node("lookin parent").look_at(get_global_mouse_position())
+		
 		
 		
 		if abs(vector.x) == abs(vector.y):
@@ -116,17 +118,30 @@ func _physics_process(_delta: float) -> void:
 		
 		elapsed += _delta
 		
-		if pressed != [0,0,0,0,0] && elapsed >= 0.05:
-			OnlineMatch.custom_rpc(self, "DoAttacks", [pressed, cooldowns, ammo]) ## make sure to have a DoAttacks function in all oc the character scripts
-			DoAttacks(pressed,cooldowns,ammo)
-			pressed = [0,0,0,0,0]
-		
+		if inanim:
+			if knockdist.length() >= 5:
+				knockdist = lerp(Vector2(0,0),knockdist,0.5)
+				move_and_slide(knockdist*(1/_delta))
+			elif knockdist.length() < 5 && knockdist.length() > 1:
+				inanim = false
+				knockdist = Vector2(0,0)
+			
+			
+			
+			pass
 		
 		
 		
 		if get_node("lookin parent").global_transform != oldpos && elapsed >= 0.05:
 			OnlineMatch.custom_rpc(self, "UpdatePos", [global_position, get_node("lookin parent").rotation, anim_dir])
+			
+		
+		if pressed != [0,0,0,0,0] && elapsed >= 0.05:
+			OnlineMatch.custom_rpc(self, "DoAttacks", [pressed, cooldowns, ammo]) ## make sure to have a DoAttacks function in all oc the character scripts
+			DoAttacks(pressed,cooldowns,ammo)
+			pressed = [0,0,0,0,0]
 			elapsed = 0.0
+		
 		
 		oldpos = get_node("lookin parent").global_transform
 	elif playerControlled == false:
@@ -183,8 +198,19 @@ func deathtimer(time):
 	
 
 
-func damage(amount, whohit):
+func damage(amount, whohit, knockorigin=null, knockintensity=null):
 	hp -= amount
 	if hp <= 0:
 		Die()
+		return
+	hp = clamp(hp,0,maxhp)
+	if knockintensity != null:
+		#knockback
+		print("doing knockback")
+		knockorigin = get_node("lookin parent").global_position - knockorigin
+		knockorigin = knockorigin.normalized()
+		knockdist = knockorigin * knockintensity
+		inanim = true
+		pass
 	pass
+

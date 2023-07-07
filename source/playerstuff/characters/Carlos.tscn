@@ -15,6 +15,7 @@ font_data = ExtResource( 1 )
 extents = Vector2( 24, 64 )
 
 [node name="Carlos" type="KinematicBody2D"]
+collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="sprite" type="Sprite" parent="."]
