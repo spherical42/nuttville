@@ -72,7 +72,7 @@ func _physics_process(_delta: float) -> void:
 
 func Swing():
 	inanim = true
-	damage(0, "0", get_node("lookin parent/lookin").global_position, -150)
+	damage(0, "0", get_node("lookin parent/lookin").global_position, -20)
 	var attack = lmb.instance()
 	attack.playerWhoShot = name
 	attack.team = team

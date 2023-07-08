@@ -2,7 +2,7 @@ extends Area2D
 
 
 var damage = 75
-var knockback = 150
+var knockback = 30
 var playerWhoShot
 var team
 

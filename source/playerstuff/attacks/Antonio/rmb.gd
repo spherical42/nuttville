@@ -2,7 +2,7 @@ extends Area2D
 
 
 var damage = 100
-var knockback = 100
+var knockback = 40
 var playerWhoShot
 var team
 var issplit = false
@@ -28,7 +28,7 @@ func _on_rmb_area_entered(area):
 	if area.get_parent().team != team:
 		print("hit player " + str(area.get_parent().name))
 		if OnlineMatch.is_network_master_for_node(self):
-			OnlineMatch.custom_rpc_sync(area.get_parent(), "damage", [damage, playerWhoShot, get_parent().get_node("Players/PlayersSpawnUnder/" + playerWhoShot).global_position, knockback])
+			OnlineMatch.custom_rpc_sync(area.get_parent(), "damage", [damage, playerWhoShot, $kb.global_position, knockback])
 		if issplit == false:
 				queue_free()
 	if area.get_parent().team == team && area.get_parent().name != playerWhoShot:

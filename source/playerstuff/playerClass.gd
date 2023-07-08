@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name Character
 
+var dash = preload("res://source/playerstuff/attacks/dash.tscn")
+
 var playerControlled = false
 var username = ""
 var selectid #defined by child class
@@ -120,7 +122,7 @@ func _physics_process(_delta: float) -> void:
 		
 		if inanim:
 			if knockdist.length() >= 5:
-				knockdist = lerp(Vector2(0,0),knockdist,0.6)
+				knockdist = lerp(Vector2(0,0),knockdist,0.9)
 				move_and_slide(knockdist*(1/_delta))
 			elif knockdist.length() < 5 && knockdist.length() > 1:
 				inanim = false
@@ -222,4 +224,10 @@ func damage(amount, whohit, knockorigin=null, knockintensity=null):
 
 func dash():
 	inanim = true
-	damage(0, "0", get_node("lookin parent/lookin").global_position, -400)
+	damage(0, "0", get_node("lookin parent/lookin").global_position, -100)
+	var dh = dash.instance()
+	dh.playerWhoShot = name
+	dh.team = team
+	get_tree().get_nodes_in_group("GameWorld")[0].add_child(dh)
+	dh.global_position = get_node("lookin parent").global_position
+	
