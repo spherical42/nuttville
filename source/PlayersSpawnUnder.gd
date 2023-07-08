@@ -18,13 +18,27 @@ func createPlayer(id,uname,charid):
 				character = get_parent().antonio.instance()
 		
 		character.name = str(id)
-		character.goto = get_parent().get_node("PlayerSpawnPoints/Player" + str(id)).global_position
-		add_child(character)
+		
+		
 		character.set_network_master(int(id))
+		var teamid # alright this part is confusing but it makes it go to the correct spot
+		match get_parent().blue.find(str(id)):
+			0:
+				teamid = 1
+			1:
+				teamid = 3
+			_:
+				match get_parent().red.find(str(id)):
+					0:
+						teamid = 2
+					1:
+						teamid = 4
 		
 		
-		character.global_position = get_parent().get_node("PlayerSpawnPoints/Player" + str(id)).global_position
+		character.goto = get_parent().get_node("PlayerSpawnPoints/Player" + str(teamid)).global_position
+		add_child(character)
+		character.global_position = get_parent().get_node("PlayerSpawnPoints/Player" + str(teamid)).global_position
 		character.username = uname
-		
+	
 	
 	pass
