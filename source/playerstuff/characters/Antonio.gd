@@ -3,12 +3,13 @@ extends Character
 
 var lmb = preload("res://source/playerstuff/attacks/Antonio/lmb.tscn")
 var rmb = preload("res://source/playerstuff/attacks/Antonio/rmb.tscn")
+var shift = preload("res://source/playerstuff/attacks/Antonio/shift.tscn")
 
 func _ready():
 	selectid = 2
 	maxhp = 1000
 	playerspeed = 240
-	maxcds = [3,4,3] #[lclick, rclick, shift] seconds of cooldown
+	maxcds = [3,5,4] #[lclick, rclick, shift] seconds of cooldown
 	._ready()
 
 func _get_custom_rpc_methods():
@@ -56,8 +57,13 @@ func DoAttacks(p, c, a):
 		
 		cooldowns[2] = maxcds[1]
 		pass
-	if p[3] == 1: # Shift
+	if p[3] == 1 && c[3] == 0: # Shift
+		
+		Wallop()
+		
+		cooldowns[3] = maxcds[2]
 		pass
+	
 	if p[4] == 1: # Super
 		pass
 	
@@ -86,4 +92,13 @@ func Throw():
 	attack.team = team
 	get_tree().get_nodes_in_group("GameWorld")[0].add_child(attack)
 	attack.global_transform = get_node("lookin parent/lookin").global_transform
+	pass
+
+func Wallop():
+	inanim = true
+	var attack = shift.instance()
+	attack.playerWhoShot = name
+	attack.team = team
+	get_node("lookin parent").add_child(attack)
+	attack.global_position = get_node("lookin parent/lookin").global_position
 	pass

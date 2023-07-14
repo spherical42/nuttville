@@ -1,0 +1,99 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://source/playerstuff/attacks/Antonio/shift.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 64.0
+height = 0.0
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CollisionShape2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -8, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CollisionShape2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 48, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -8, 93.0643 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "SwingLeft"
+length = 0.25
+step = 0.005
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.201 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "removeCol"
+}, {
+"args": [  ],
+"method": "queue_free"
+}, {
+"args": [  ],
+"method": "endAnim"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.065, 0.13, 0.195 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -16, 256 ), Vector2( 128, 96 ), Vector2( 256, -128 ), Vector2( 128, -256 ) ]
+}
+
+[node name="shift" type="Area2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -8, 48 )
+scale = Vector2( 1.5, 1.5 )
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionShape2D"]
+color = Color( 0.509804, 0.603922, 0.721569, 1 )
+polygon = PoolVector2Array( 0, -64, 32, -56, 56, -32, 64, -8, 64, 8, 56, 32, 40, 48, 16, 64, -16, 64, -32, 56, -48, 40, -64, 16, -64, -8, -56, -32, -40, -48, -32, -56, -16, -64 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/SwingLeft = SubResource( 3 )
+
+[connection signal="area_entered" from="." to="." method="_on_AntonioLmb_area_entered"]
